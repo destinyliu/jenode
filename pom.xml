@@ -12,6 +12,7 @@
     </properties>
 
     <modules>
+        <module>jenode-core</module>
     </modules>
 
     <build>
