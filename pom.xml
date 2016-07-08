@@ -13,6 +13,7 @@
 
     <modules>
         <module>jenode-core</module>
+        <module>jenode-sample</module>
     </modules>
 
     <build>
