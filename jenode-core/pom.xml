@@ -10,12 +10,4 @@
     <artifactId>jenode-core</artifactId>
     <modelVersion>4.0.0</modelVersion>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>3.2.6</version>
-        </dependency>
-    </dependencies>
-
 </project>
