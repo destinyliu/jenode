@@ -27,6 +27,8 @@ public class DefaultMQPushConsumerFactoryBean extends AbstractFactoryBean<Defaul
     private String consumeFromWhere;
 
     private MessageListenerConcurrently messageListener;
+    private String topic;
+    private String tag;
 
     @Override
     public Class<?> getObjectType() {
@@ -38,7 +40,7 @@ public class DefaultMQPushConsumerFactoryBean extends AbstractFactoryBean<Defaul
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroup);
         consumer.setNamesrvAddr(nameServer);
         //订阅PushTopic下Tag为push的消息
-        consumer.subscribe("PushTopic", "push");
+        consumer.subscribe(topic, tag);
         //程序第一次启动从消息队列头取数据
         consumer.setConsumeFromWhere(ConsumeFromWhere.valueOf(consumeFromWhere));
         consumer.registerMessageListener(messageListener);
@@ -46,4 +48,27 @@ public class DefaultMQPushConsumerFactoryBean extends AbstractFactoryBean<Defaul
         return consumer;
     }
 
+    public void setNameServer(String nameServer) {
+        this.nameServer = nameServer;
+    }
+
+    public void setConsumeFromWhere(String consumeFromWhere) {
+        this.consumeFromWhere = consumeFromWhere;
+    }
+
+    public void setConsumerGroup(String consumerGroup) {
+        this.consumerGroup = consumerGroup;
+    }
+
+    public void setMessageListener(MessageListenerConcurrently messageListener) {
+        this.messageListener = messageListener;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 }

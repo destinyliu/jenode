@@ -8,16 +8,13 @@ import org.springframework.beans.factory.config.AbstractFactoryBean;
  *
  * @author jianyu.liu@hnlark.com
  */
-public class DefaultMQProducerFactoryBean extends AbstractFactoryBean<DefaultMQProducer> {
+public class RocketMQCommandPublisher implements CommnadPublisher {
 
     private String producerGroup;
 
     private String nameServer;
 
-    @Override
-    public Class<?> getObjectType() {
-        return DefaultMQProducer.class;
-    }
+    private DefaultMQProducer
 
     @Override
     protected DefaultMQProducer createInstance() throws Exception {
@@ -36,4 +33,8 @@ public class DefaultMQProducerFactoryBean extends AbstractFactoryBean<DefaultMQP
         this.producerGroup = producerGroup;
     }
 
+    @Override
+    public void publish() {
+
+    }
 }

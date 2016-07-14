@@ -10,7 +10,17 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
         <rocketmq.version>3.2.6</rocketmq.version>
+        <spring.version>4.3.1.RELEASE</spring.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>destinyshine</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>

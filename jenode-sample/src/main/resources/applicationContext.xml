@@ -1,6 +1,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans">
-    <bean>
+    <bean class="test.DefaultMQProducerFactoryBean">
+        <property name="nameServer" value="" />
+    </bean>
 
+    <bean class="test.DefaultMQPushConsumerFactoryBean">
+        <property name="nameServer" value="" />
     </bean>
 
 </beans>
