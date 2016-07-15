@@ -2,7 +2,6 @@ package test.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import test.CommnadPublisher;
 
 import javax.annotation.Resource;
 
