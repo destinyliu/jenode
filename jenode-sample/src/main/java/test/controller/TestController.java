@@ -1,5 +1,7 @@
 package test.controller;
 
+import org.destinyshine.CommandPublishService;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,10 +17,10 @@ import javax.annotation.Resource;
 public class TestController {
 
     @Resource
-    private CommnadPublisher commandPublisher;
+    private CommandPublishService commandPublishService;
 
     public void test() {
-
+        commandPublishService.publish(null);
     }
 
 }

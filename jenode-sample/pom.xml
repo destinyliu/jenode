@@ -13,6 +13,11 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.destinyshine.jenode</groupId>
+            <artifactId>jenode-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 
