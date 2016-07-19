@@ -91,9 +91,9 @@ public class HandlerMethod {
         int count = this.bridgedMethod.getParameterTypes().length;
         MethodParameter[] result = new MethodParameter[count];
 
-        for(int i = 0; i < count; ++i) {
-            result[i] = new HandlerMethod.HandlerMethodParameter(i);
-        }
+//        for(int i = 0; i < count; ++i) {
+//            result[i] = new HandlerMethod.HandlerMethodParameter(i);
+//        }
 
         return result;
     }
@@ -122,16 +122,8 @@ public class HandlerMethod {
         return this.resolvedFromHandlerMethod;
     }
 
-    public MethodParameter getReturnType() {
-        return new HandlerMethod.HandlerMethodParameter(-1);
-    }
-
-    public MethodParameter getReturnValueType(Object returnValue) {
-        return new HandlerMethod.ReturnValueMethodParameter(returnValue);
-    }
-
     public boolean isVoid() {
-        return Void.TYPE.equals(this.getReturnType().getParameterType());
+        return true;
     }
 
     public <A extends Annotation> A getMethodAnnotation(Class<A> annotationType) {
@@ -176,51 +168,4 @@ public class HandlerMethod {
         return this.method.toGenericString();
     }
 
-    private class ReturnValueMethodParameter extends HandlerMethod.HandlerMethodParameter {
-        private final Object returnValue;
-
-        public ReturnValueMethodParameter(Object returnValue) {
-            super();
-            this.returnValue = returnValue;
-        }
-
-        protected ReturnValueMethodParameter(HandlerMethod.ReturnValueMethodParameter original) {
-            super();
-            this.returnValue = original.returnValue;
-        }
-
-        public Class<?> getParameterType() {
-            return this.returnValue != null?this.returnValue.getClass():super.getParameterType();
-        }
-
-        public HandlerMethod.ReturnValueMethodParameter clone() {
-            return HandlerMethod.this.new ReturnValueMethodParameter(this);
-        }
-    }
-
-    protected class HandlerMethodParameter extends SynthesizingMethodParameter {
-        public HandlerMethodParameter(int index) {
-            super(HandlerMethod.this.bridgedMethod, index);
-        }
-
-        protected HandlerMethodParameter(HandlerMethod.HandlerMethodParameter original) {
-            super(original);
-        }
-
-        public Class<?> getContainingClass() {
-            return HandlerMethod.this.getBeanType();
-        }
-
-        public <T extends Annotation> T getMethodAnnotation(Class<T> annotationType) {
-            return HandlerMethod.this.getMethodAnnotation(annotationType);
-        }
-
-        public <T extends Annotation> boolean hasMethodAnnotation(Class<T> annotationType) {
-            return HandlerMethod.this.hasMethodAnnotation(annotationType);
-        }
-
-        public HandlerMethod.HandlerMethodParameter clone() {
-            return HandlerMethod.this.new HandlerMethodParameter(this);
-        }
-    }
 }

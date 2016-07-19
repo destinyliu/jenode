@@ -1,4 +1,4 @@
-package test.controller;
+package commnadhandler;
 
 import org.destinyshine.CommandPublishService;
 import org.springframework.kafka.core.KafkaTemplate;

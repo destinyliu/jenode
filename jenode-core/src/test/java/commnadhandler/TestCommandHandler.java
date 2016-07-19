@@ -1,6 +1,5 @@
-package test.controller;
+package commnadhandler;
 
-import org.destinyshine.Command;
 import org.destinyshine.CommandHandler;
 
 /**
@@ -10,7 +9,7 @@ public class TestCommandHandler {
 
     @CommandHandler(TestCommand.class)
     public void handleTest(TestCommand testCommand) {
-
+        System.out.println("do testCommand handler");
     }
 
 }

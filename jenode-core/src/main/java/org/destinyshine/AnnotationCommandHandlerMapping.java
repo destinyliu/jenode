@@ -2,7 +2,10 @@ package org.destinyshine;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.apache.commons.logging.Log;
@@ -10,16 +13,15 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.core.MethodIntrospector;
 import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
-import org.springframework.web.context.support.WebApplicationObjectSupport;
 /**
  * @author destinyliu
  */
-public class AnnotationCommandHandlerMapping extends WebApplicationObjectSupport implements CommandHandlerMapping, InitializingBean {
+public class AnnotationCommandHandlerMapping extends ApplicationObjectSupport implements CommandHandlerMapping, InitializingBean {
 
     protected final Log logger = LogFactory.getLog(this.getClass());
 
