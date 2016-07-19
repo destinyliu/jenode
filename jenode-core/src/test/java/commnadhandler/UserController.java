@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping
-public class TestController {
+public class UserController {
 
     //@Resource
     private CommandPublishService commandPublishService;

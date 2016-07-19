@@ -3,9 +3,6 @@ package commnadhandler;
 import org.destinyshine.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.cglib.proxy.Dispatcher;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,7 +20,7 @@ public class CommandDispatcherTest {
 
     @Test
     public void test() throws Exception {
-        commandDispatcher.dispatch(new TestCommand());
+        commandDispatcher.dispatch(new UserPostCommand());
     }
 
 }
