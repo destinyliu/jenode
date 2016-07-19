@@ -15,10 +15,7 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationObjectSupport;
-import org.springframework.web.method.HandlerMethod;
-
 /**
  * @author destinyliu
  */
@@ -224,7 +221,7 @@ public class AnnotationCommandHandlerMapping extends WebApplicationObjectSupport
 
         List<MappingRegistration> founds = new LinkedList<>();
         for(Map.Entry<CommandMappingInfo, MappingRegistration> m:mappings.entrySet()) {
-            if (matchs(m.getValue(), command)) {
+            if (matches(m.getValue(), command)) {
                 founds.add(m.getValue());
             }
         }
@@ -232,17 +229,8 @@ public class AnnotationCommandHandlerMapping extends WebApplicationObjectSupport
         return founds.get(0).getHandlerMethod();
     }
 
-    protected boolean matchs(MappingRegistration mappingRegistration, Command command) {
-        if (mappingRegistration.getMapping().getCommandType().equals(command.getClass())) {
-            return true;
-        }
-        return false;
-    }
-
-
     protected boolean isHandler(Class<?> beanType) {
-        return (AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) ||
-                AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class));
+        return AnnotatedElementUtils.hasAnnotation(beanType, CommandHandler.class);
     }
 
     protected CommandMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
@@ -251,20 +239,28 @@ public class AnnotationCommandHandlerMapping extends WebApplicationObjectSupport
     }
 
     private CommandMappingInfo createRequestMappingInfo(AnnotatedElement element) {
-        RequestMapping requestMapping = AnnotatedElementUtils.findMergedAnnotation(element, RequestMapping.class);
-        return (requestMapping != null ? createRequestMappingInfo(requestMapping) : null);
+        CommandHandler commandHandler = AnnotatedElementUtils.findMergedAnnotation(element, CommandHandler.class);
+        return (commandHandler != null ? createRequestMappingInfo(commandHandler) : null);
     }
 
     protected CommandMappingInfo createRequestMappingInfo(
-            RequestMapping requestMapping) {
+            CommandHandler commandHandler) {
 
         CommandMappingInfo commandMappingInfo = new CommandMappingInfo();
+        commandMappingInfo.setCommandType(commandHandler.value());
         return commandMappingInfo;
     }
 
     @Override
     public Object getHandler(Command command) throws Exception {
         return getHandlerInternal(command);
+    }
+
+    protected boolean matches(MappingRegistration mappingRegistration, Command command) {
+        if (mappingRegistration.getMapping().getCommandType().isAssignableFrom(command.getClass())) {
+            return true;
+        }
+        return false;
     }
 
     /**
