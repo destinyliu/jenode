@@ -241,15 +241,15 @@ public class AnnotationCommandHandlerMapping extends ApplicationObjectSupport im
     }
 
     private CommandMappingInfo createRequestMappingInfo(AnnotatedElement element) {
-        CommandHandler commandHandler = AnnotatedElementUtils.findMergedAnnotation(element, CommandHandler.class);
-        return (commandHandler != null ? createRequestMappingInfo(commandHandler) : null);
+        Subscribe subscribe = AnnotatedElementUtils.findMergedAnnotation(element, Subscribe.class);
+        return (subscribe != null ? createRequestMappingInfo(subscribe) : null);
     }
 
     protected CommandMappingInfo createRequestMappingInfo(
-            CommandHandler commandHandler) {
+            Subscribe subscribe) {
 
         CommandMappingInfo commandMappingInfo = new CommandMappingInfo();
-        commandMappingInfo.setCommandType(commandHandler.value());
+        commandMappingInfo.setCommandType(subscribe.value());
         return commandMappingInfo;
     }
 

@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 @RequestMapping
 public class TestController {
 
-    @Resource
+    //@Resource
     private CommandPublishService commandPublishService;
 
     public void test() {

@@ -1,19 +1,24 @@
 package org.destinyshine;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.springframework.stereotype.Component;
+
+import java.lang.annotation.*;
 
 /**
- * Created by jianyu.liu@hnlark.com on 2016/7/6.
- *
- * @author jianyu.liu@hnlark.com
+ * @author destinyliu
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
 public @interface CommandHandler {
 
-    Class<? extends Command> value();
+    /**
+     * The value may indicate a suggestion for a logical component name,
+     * to be turned into a Spring bean in case of an autodetected component.
+     * @return the suggested component name, if any
+     */
+    String value() default "";
 
 }
+
