@@ -1,4 +1,4 @@
-package commnadhandler;
+package org.destinyshine.jenode.testcases.dispatcher;
 
 import org.destinyshine.CommandHandler;
 import org.destinyshine.Subscribe;

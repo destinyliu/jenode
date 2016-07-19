@@ -1,4 +1,4 @@
-package commnadhandler;
+package org.destinyshine.jenode.testcases.dispatcher;
 
 import org.destinyshine.*;
 import org.junit.Test;
