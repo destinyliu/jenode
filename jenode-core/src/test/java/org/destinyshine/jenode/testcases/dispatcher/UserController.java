@@ -1,9 +1,6 @@
 package org.destinyshine.jenode.testcases.dispatcher;
 
 import org.destinyshine.CommandPublishService;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 
@@ -12,8 +9,8 @@ import javax.annotation.Resource;
  *
  * @author jianyu.liu@hnlark.com
  */
-@Controller
-@RequestMapping
+//@Controller
+//@RequestMapping
 public class UserController {
 
     //@Resource
