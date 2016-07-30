@@ -1,6 +1,6 @@
 package org.destinyshine.jenode.testcases.dispatcher;
 
-import org.destinyshine.*;
+import org.destinyshine.commanding.CommandDispatcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

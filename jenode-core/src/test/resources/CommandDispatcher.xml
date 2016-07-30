@@ -4,14 +4,14 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="commnadhandler" />
+    <context:component-scan base-package="org.destinyshine.jenode.testcases.dispatcher" />
     
-    <bean class="org.destinyshine.CommandDispatcher">
+    <bean class="org.destinyshine.commanding.CommandDispatcher">
         <property name="commandHandlerMapping">
-            <bean class="org.destinyshine.AnnotationCommandHandlerMapping"></bean>
+            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerMapping"></bean>
         </property>
         <property name="commandHandlerAdapter">
-            <bean class="org.destinyshine.AnnotationCommandHandlerAdapter"></bean>
+            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerAdapter"></bean>
         </property>
     </bean>
 </beans>

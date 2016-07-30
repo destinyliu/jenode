@@ -1,6 +1,4 @@
-package org.destinyshine;
-
-import org.springframework.web.servlet.HandlerExecutionChain;
+package org.destinyshine.commanding;
 
 /**
  * @author destinyliu

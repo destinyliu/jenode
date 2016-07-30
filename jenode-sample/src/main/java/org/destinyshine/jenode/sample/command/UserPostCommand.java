@@ -1,4 +1,4 @@
-package org.destinyshine.jenode.testcases.dispatcher;
+package org.destinyshine.jenode.sample.command;
 
 import org.destinyshine.commanding.Command;
 

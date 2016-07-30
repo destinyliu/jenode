@@ -1,4 +1,4 @@
-package org.destinyshine;
+package org.destinyshine.commanding;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
@@ -10,6 +10,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.destinyshine.*;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.InitializingBean;

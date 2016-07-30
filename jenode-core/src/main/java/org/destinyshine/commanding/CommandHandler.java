@@ -1,4 +1,4 @@
-package org.destinyshine;
+package org.destinyshine.commanding;
 
 import org.springframework.stereotype.Component;
 

@@ -1,11 +1,12 @@
-package org.destinyshine;
+package org.destinyshine.commanding;
 
+import org.destinyshine.HandlerMethod;
 import org.springframework.util.ReflectionUtils;
 
 /**
  * @author destinyliu
  */
-public class AnnotationCommandHandlerAdapter implements CommandHandlerAdapter{
+public class AnnotationCommandHandlerAdapter implements CommandHandlerAdapter {
 
     @Override
     public boolean supports(Object handler) {

@@ -1,10 +1,12 @@
 package org.destinyshine.jenode.sample.controller;
 
+import org.destinyshine.commanding.CommandPublishService;
+import org.destinyshine.jenode.sample.command.UserPostCommand;
 import org.destinyshine.jenode.sample.model.User;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * Created by fengmian on 16/7/29.
@@ -13,8 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
 
+    @Resource
+    private CommandPublishService commandPublishService;
+
     @RequestMapping(path = "", method = RequestMethod.POST)
-    public User post(User user) {
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User post(@RequestBody User user) {
+        commandPublishService.publish(new UserPostCommand());
         return user;
     }
 

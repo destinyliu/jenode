@@ -3,4 +3,24 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <bean name="commandQueue" class="java.util.concurrent.LinkedBlockingQueue" >
+    </bean>
+    <bean class="org.destinyshine.commanding.InMemoryCommandPublishService" >
+        <property name="commandQueue" ref="commandQueue" />
+    </bean>
+
+    <bean class="org.destinyshine.commanding.InMemoryCommandObserver">
+        <property name="commandQueue" ref="commandQueue"/>
+        <property name="commandDispatcher" ref="commandDispatcher" />
+    </bean>
+
+    <bean name="commandDispatcher" class="org.destinyshine.commanding.CommandDispatcher">
+        <property name="commandHandlerMapping">
+            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerMapping"></bean>
+        </property>
+        <property name="commandHandlerAdapter">
+            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerAdapter"></bean>
+        </property>
+    </bean>
+
 </beans>

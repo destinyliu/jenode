@@ -1,7 +1,8 @@
-package org.destinyshine.jenode.testcases.dispatcher;
+package org.destinyshine.jenode.sample.commandhandlers;
 
 import org.destinyshine.commanding.CommandHandler;
 import org.destinyshine.Subscribe;
+import org.destinyshine.jenode.sample.command.UserPostCommand;
 
 /**
  * @author destinyliu

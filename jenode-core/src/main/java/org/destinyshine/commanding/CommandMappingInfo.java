@@ -1,4 +1,4 @@
-package org.destinyshine;
+package org.destinyshine.commanding;
 
 /**
  * 映射元信息，条件

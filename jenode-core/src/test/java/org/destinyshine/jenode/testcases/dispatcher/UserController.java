@@ -1,8 +1,6 @@
 package org.destinyshine.jenode.testcases.dispatcher;
 
-import org.destinyshine.CommandPublishService;
-
-import javax.annotation.Resource;
+import org.destinyshine.commanding.CommandPublishService;
 
 /**
  * Created by jianyu.liu@hnlark.com on 2016/7/11.
