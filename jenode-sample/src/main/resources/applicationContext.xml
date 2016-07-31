@@ -5,21 +5,21 @@
 
     <bean name="commandQueue" class="java.util.concurrent.LinkedBlockingQueue" >
     </bean>
-    <bean class="org.destinyshine.commanding.InMemoryCommandPublishService" >
+    <bean class="org.destinyshine.jenode.commanding.InMemoryCommandPublishService" >
         <property name="commandQueue" ref="commandQueue" />
     </bean>
 
-    <bean class="org.destinyshine.commanding.InMemoryCommandObserver">
+    <bean class="org.destinyshine.jenode.commanding.InMemoryCommandObserver">
         <property name="commandQueue" ref="commandQueue"/>
         <property name="commandDispatcher" ref="commandDispatcher" />
     </bean>
 
-    <bean name="commandDispatcher" class="org.destinyshine.commanding.CommandDispatcher">
+    <bean name="commandDispatcher" class="org.destinyshine.jenode.commanding.CommandDispatcher">
         <property name="commandHandlerMapping">
-            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerMapping"></bean>
+            <bean class="org.destinyshine.jenode.commanding.AnnotationCommandHandlerMapping"></bean>
         </property>
         <property name="commandHandlerAdapter">
-            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerAdapter"></bean>
+            <bean class="org.destinyshine.jenode.commanding.AnnotationCommandHandlerAdapter"></bean>
         </property>
     </bean>
 

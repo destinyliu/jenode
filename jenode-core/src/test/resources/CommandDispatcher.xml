@@ -6,12 +6,12 @@
 
     <context:component-scan base-package="org.destinyshine.jenode.testcases.dispatcher" />
     
-    <bean class="org.destinyshine.commanding.CommandDispatcher">
+    <bean class="org.destinyshine.jenode.commanding.CommandDispatcher">
         <property name="commandHandlerMapping">
-            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerMapping"></bean>
+            <bean class="org.destinyshine.jenode.commanding.AnnotationCommandHandlerMapping"></bean>
         </property>
         <property name="commandHandlerAdapter">
-            <bean class="org.destinyshine.commanding.AnnotationCommandHandlerAdapter"></bean>
+            <bean class="org.destinyshine.jenode.commanding.AnnotationCommandHandlerAdapter"></bean>
         </property>
     </bean>
 </beans>
