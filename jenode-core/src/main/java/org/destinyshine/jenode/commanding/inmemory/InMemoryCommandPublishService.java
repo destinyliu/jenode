@@ -1,4 +1,7 @@
-package org.destinyshine.jenode.commanding;
+package org.destinyshine.jenode.commanding.inmemory;
+
+import org.destinyshine.jenode.commanding.Command;
+import org.destinyshine.jenode.commanding.CommandPublishService;
 
 import java.util.concurrent.BlockingQueue;
 

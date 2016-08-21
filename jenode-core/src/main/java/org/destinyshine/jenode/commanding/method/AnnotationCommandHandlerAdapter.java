@@ -1,5 +1,8 @@
-package org.destinyshine.jenode.commanding;
+package org.destinyshine.jenode.commanding.method;
 
+import org.destinyshine.jenode.commanding.Command;
+import org.destinyshine.jenode.commanding.CommandHandlerAdapter;
+import org.destinyshine.jenode.commanding.HandlerMethod;
 import org.springframework.util.ReflectionUtils;
 
 /**

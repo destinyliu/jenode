@@ -5,11 +5,11 @@
 
     <bean name="commandQueue" class="java.util.concurrent.LinkedBlockingQueue" >
     </bean>
-    <bean class="org.destinyshine.jenode.commanding.inmemory.InMemoryCommandPublishService" >
-        <property name="commandQueue" ref="commandQueue" />
+    <bean class="org.destinyshine.jenode.commanding.kafka.KafkaCommandPublishService" >
+        <property name="kafkaProducer" ref="" />
     </bean>
 
-    <bean class="org.destinyshine.jenode.commanding.inmemory.InMemoryCommandObserver">
+    <bean class="org.destinyshine.jenode.commanding.kafka.KafkaCommandObserver">
         <property name="commandQueue" ref="commandQueue"/>
         <property name="commandDispatcher" ref="commandDispatcher" />
     </bean>

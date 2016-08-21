@@ -1,4 +1,4 @@
-package org.destinyshine.jenode.commanding;
+package org.destinyshine.jenode.commanding.method;
 
 /**
  * 映射元信息，条件

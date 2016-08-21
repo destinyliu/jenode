@@ -8,10 +8,10 @@
     
     <bean class="org.destinyshine.jenode.commanding.CommandDispatcher">
         <property name="commandHandlerMapping">
-            <bean class="org.destinyshine.jenode.commanding.AnnotationCommandHandlerMapping"></bean>
+            <bean class="org.destinyshine.jenode.commanding.method.AnnotationCommandHandlerMapping"></bean>
         </property>
         <property name="commandHandlerAdapter">
-            <bean class="org.destinyshine.jenode.commanding.AnnotationCommandHandlerAdapter"></bean>
+            <bean class="org.destinyshine.jenode.commanding.method.AnnotationCommandHandlerAdapter"></bean>
         </property>
     </bean>
 </beans>

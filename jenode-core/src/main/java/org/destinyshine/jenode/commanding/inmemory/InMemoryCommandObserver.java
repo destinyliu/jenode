@@ -1,5 +1,7 @@
-package org.destinyshine.jenode.commanding;
+package org.destinyshine.jenode.commanding.inmemory;
 
+import org.destinyshine.jenode.commanding.AbstractCommandObserver;
+import org.destinyshine.jenode.commanding.Command;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.concurrent.BlockingQueue;
