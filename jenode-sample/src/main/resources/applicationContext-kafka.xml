@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean name="commandQueue" class="java.util.concurrent.LinkedBlockingQueue" >
+    <context:component-scan base-package="org.destinyshine.jenode" />
+    
+    <bean name="stringSerializer" class="org.apache.kafka.common.serialization.StringSerializer">
     </bean>
-    <bean class="org.destinyshine.jenode.commanding.kafka.KafkaCommandPublishService" >
-        <property name="kafkaProducer" ref="" />
+
+    <bean name="protostuffSerializer" class="org.destinyshine.jenode.kafka.support.serialization.ProtostuffSerializer">
+    </bean>
+
+    <bean name="stringDeserializer" class="org.apache.kafka.common.serialization.StringDeserializer">
+    </bean>
+
+    <bean name="protostuffDeserializer" class="org.destinyshine.jenode.kafka.support.serialization.ProtostuffDeserializer">
+    </bean>
+
+    <bean class="org.destinyshine.jenode.commanding.kafka.KafkaCommandPublishService">
+        <property name="kafkaProducer">
+            <bean class="org.destinyshine.jenode.kafka.ProducerFactory">
+                <property name="properties">
+                    <props>
+                        <prop key="bootstrap.servers">localhost:9092</prop>
+                        <prop key="acks">all</prop>
+                        <prop key="retries">0</prop>
+                        <prop key="batch.size">16384</prop>
+                        <prop key="linger.ms">1</prop>
+                        <prop key="buffer.memory">33554432</prop>
+                    </props>
+                </property>
+                <property name="keySerializer" ref="stringSerializer"/>
+                <property name="valueSerializer" ref="protostuffSerializer"/>
+            </bean>
+        </property>
     </bean>
 
     <bean class="org.destinyshine.jenode.commanding.kafka.KafkaCommandObserver">
-        <property name="commandQueue" ref="commandQueue"/>
-        <property name="commandDispatcher" ref="commandDispatcher" />
+        <property name="commandConsumer">
+            <bean class="org.destinyshine.jenode.kafka.ConsumerFactory">
+                <property name="properties">
+                    <props>
+                        <prop key="bootstrap.servers">localhost:9092</prop>
+                        <prop key="group.id">test</prop>
+                        <prop key="enable.auto.commit">true</prop>
+                        <prop key="auto.commit.interval.ms">1000</prop>
+                        <prop key="session.timeout.ms">30000</prop>
+                    </props>
+                </property>
+                <property name="keyDeserializer" ref="stringDeserializer"/>
+                <property name="valueDeserializer" ref="protostuffDeserializer"/>
+            </bean>
+        </property>
+        <property name="commandDispatcher" ref="commandDispatcher"/>
     </bean>
 
     <bean name="commandDispatcher" class="org.destinyshine.jenode.commanding.CommandDispatcher">

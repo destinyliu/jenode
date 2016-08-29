@@ -35,6 +35,10 @@ public class KafkaCommandObserver implements KafkaDefualts, CommandObserver, Ini
         this.topic = topic;
     }
 
+    public void setCommandConsumer(KafkaConsumer<String, Command> commandConsumer) {
+        this.commandConsumer = commandConsumer;
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtils.isBlank(topic)) {
@@ -42,13 +46,23 @@ public class KafkaCommandObserver implements KafkaDefualts, CommandObserver, Ini
         }
 
         commandConsumer.subscribe(Arrays.asList(topic));
-        while (true) {
-            ConsumerRecords<String, Command> records = commandConsumer.poll(100);
-            for (ConsumerRecord<String, Command> record : records) {
-                System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
-                Command command = record.value();
-                getCommandDispatcher().dispatch(command);
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+
+                while (true) {
+                    ConsumerRecords<String, Command> records = commandConsumer.poll(100);
+                    for (ConsumerRecord<String, Command> record : records) {
+                        System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+                        Command command = record.value();
+                        try {
+                            getCommandDispatcher().dispatch(command);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
-        }
+        }).start();
     }
 }

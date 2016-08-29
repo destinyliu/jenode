@@ -1,8 +1,9 @@
-package org.destinyshine.jenode.jenode.sample.model;
+package org.destinyshine.jenode.sample.dto;
+
 /**
- * Created by fengmian on 16/7/29.
+ * Created by fengmian on 16/8/27.
  */
-public class User {
+public class UserDTO {
 
     private String email;
     private String nickname;

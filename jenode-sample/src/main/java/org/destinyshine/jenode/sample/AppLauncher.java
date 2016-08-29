@@ -1,4 +1,4 @@
-package org.destinyshine.jenode.jenode.sample; /**
+package org.destinyshine.jenode.sample; /**
  * Created by fengmian on 16/7/29.
  */
 
@@ -12,9 +12,9 @@ import org.springframework.context.annotation.ImportResource;
  * Created by wenchao.ren on 2014/4/26.
  */
 @EnableAutoConfiguration
-@ImportResource("classpath:/applicationContext.xml")
+@ImportResource("classpath:/applicationContext-kafka.xml")
 @Configuration
-@ComponentScan()
+@ComponentScan("org.destinyshine.jenode")
 public class AppLauncher {
 
     public static void main(String[] args) {

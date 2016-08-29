@@ -1,4 +1,4 @@
-package org.destinyshine.jenode.commanding;
+package org.destinyshine.jenode.commanding.context;
 
 import java.io.Serializable;
 

@@ -1,8 +1,8 @@
-package org.destinyshine.jenode.jenode.sample.controller;
+package org.destinyshine.jenode.sample.controller;
 
 import org.destinyshine.jenode.commanding.CommandPublishService;
-import org.destinyshine.jenode.jenode.sample.command.UserPostCommand;
-import org.destinyshine.jenode.jenode.sample.model.User;
+import org.destinyshine.jenode.sample.command.UserPostCommand;
+import org.destinyshine.jenode.sample.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

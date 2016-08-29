@@ -11,6 +11,6 @@ import org.destinyshine.jenode.commanding.Command;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Subscribe {
 
-    Class<? extends Command> value();
+    Class<? extends Command> value() default Command.class;
 
 }

@@ -6,13 +6,13 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.destinyshine.jenode.commanding.Command;
 import org.destinyshine.jenode.commanding.CommandPublishService;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.kafka.core.KafkaTemplate;
 
 /**
  * @author destinyliu
  */
 public class KafkaCommandPublishService implements KafkaDefualts, CommandPublishService, InitializingBean {
 
-//    private KafkaTemplate<String, Command> kafkaTemplate;
 
     private KafkaProducer<String, Command> kafkaProducer;
 
