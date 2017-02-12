@@ -1,8 +1,6 @@
 package org.destinyshine.jenode.commanding.kafka;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.destinyshine.jenode.commanding.Command;
 import org.destinyshine.jenode.commanding.CommandPublishService;
 import org.springframework.beans.factory.InitializingBean;
@@ -11,32 +9,26 @@ import org.springframework.kafka.core.KafkaTemplate;
 /**
  * @author destinyliu
  */
-public class KafkaCommandPublishService implements KafkaDefualts, CommandPublishService, InitializingBean {
+public class KafkaCommandPublishService implements KafkaDefaults, CommandPublishService, InitializingBean {
 
 
-    private KafkaProducer<String, Command> kafkaProducer;
+    private KafkaTemplate<String, Command> KafkaTemplate;
 
 
     private String topic;
 
     @Override
     public void publish(Command command) {
-        ProducerRecord<String, Command> producerRecord = assembleProducerRecord(command);
-        kafkaProducer.send(producerRecord);
-    }
-
-    protected ProducerRecord<String, Command> assembleProducerRecord(Command command) {
         String key = String.valueOf(command.getId());
-        return new ProducerRecord<>(topic, key, command);
+        KafkaTemplate.send(topic, key, command);
     }
-
 
     public void setTopic(String topic) {
         this.topic = topic;
     }
 
-    public void setKafkaProducer(KafkaProducer<String, Command> kafkaProducer) {
-        this.kafkaProducer = kafkaProducer;
+    public void setKafkaTemplate(KafkaTemplate<String, Command> kafkaTemplate) {
+        KafkaTemplate = kafkaTemplate;
     }
 
     @Override
@@ -47,6 +39,6 @@ public class KafkaCommandPublishService implements KafkaDefualts, CommandPublish
     }
 
     //public void setKafkaTemplate(KafkaTemplate<String, Command> kafkaTemplate) {
-        //this.kafkaTemplate = kafkaTemplate;
+    //this.kafkaTemplate = kafkaTemplate;
     //}
 }

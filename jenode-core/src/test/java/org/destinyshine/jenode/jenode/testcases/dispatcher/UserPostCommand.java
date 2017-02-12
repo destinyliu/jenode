@@ -12,4 +12,9 @@ public class UserPostCommand implements Command {
         return null;
     }
 
+    @Override
+    public Long getAggregateRootId() {
+        return null;
+    }
+
 }

@@ -27,4 +27,9 @@ public class ChangePasswordCommand implements Command{
     public Long getId() {
         return id;
     }
+
+    @Override
+    public Long getAggregateRootId() {
+        return null;
+    }
 }

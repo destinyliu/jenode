@@ -27,9 +27,8 @@ public class UserController {
 
     @RequestMapping(path = "/{user}", method = RequestMethod.GET)
     public User get(@PathVariable String user) {
-        User u = new User();
-        u.setNickname(user);
-        u.setEmail("mylife@life.com");
+
+        User u = new User("mylife@life.com", "mylile", "123");
         return u;
     }
 
