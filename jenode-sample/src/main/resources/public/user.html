@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script src="//cdn.bootcss.com/vue/2.1.10/vue.js"></script>
+    <script src="//cdn.bootcss.com/vue-resource/1.1.0/vue-resource.js"></script>
+    <script>
+        $(function () {
+
+            var actionMethods = {
+
+                "putEntry": function () {
+                    console.log(this.dataBody);
+                    this.$http.post('/api/users/', this.dataBody.item).then(function () {
+                        alert("OK");
+                    });
+                }
+            };
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    dataBody: {item: {}}
+                },
+                methods: actionMethods
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<div id="app">
+    email: <input v-model="dataBody.item.email"/><br/>
+    nickname: <input v-model="dataBody.item.nickname"><br/>
+    password: <input v-model="dataBody.item.password"><br/>
+
+    <button v-on:click="putEntry">submit</button>
+
+</div>
+</body>
+</html>

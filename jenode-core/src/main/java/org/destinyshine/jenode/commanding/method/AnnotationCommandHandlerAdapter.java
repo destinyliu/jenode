@@ -19,7 +19,7 @@ public class AnnotationCommandHandlerAdapter implements CommandHandlerAdapter {
     public Object handle(Object handler, Command command) throws Exception {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Object target = handlerMethod.getBean();
-        ReflectionUtils.invokeMethod(handlerMethod.getMethod(), target, command);
+        ReflectionUtils.invokeMethod(handlerMethod.getMethod(), target,null, command);
         return null;
     }
 }

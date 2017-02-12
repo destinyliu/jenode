@@ -1,23 +1,24 @@
 package org.destinyshine.jenode.kafka.support.serialization;
 
+import java.util.Map;
+
+import org.apache.kafka.common.serialization.Serializer;
+
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
-import org.apache.kafka.common.serialization.Serializer;
-import org.springframework.beans.factory.InitializingBean;
-
-import java.util.Map;
 
 /**
  * Created by fengmian on 16/8/27.
  */
-public class ProtostuffSerializer<T> implements Serializer<T>, InitializingBean {
+public class ProtostuffSerializer<T> implements Serializer<T> {
 
     private Schema<ValueWrapper> schema;
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
+        schema = RuntimeSchema.getSchema(ValueWrapper.class);
     }
 
     @Override
@@ -32,8 +33,4 @@ public class ProtostuffSerializer<T> implements Serializer<T>, InitializingBean 
 
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        schema = RuntimeSchema.getSchema(ValueWrapper.class);
-    }
 }

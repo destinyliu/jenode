@@ -12,6 +12,7 @@ import org.destinyshine.jenode.commanding.CommandObserver;
 import org.destinyshine.jenode.commanding.CommandPublishService;
 import org.destinyshine.jenode.commanding.kafka.KafkaCommandObserver;
 import org.destinyshine.jenode.commanding.kafka.KafkaCommandPublishService;
+import org.destinyshine.jenode.commanding.kafka.KafkaDefaults;
 import org.destinyshine.jenode.commanding.method.AnnotationCommandHandlerAdapter;
 import org.destinyshine.jenode.commanding.method.AnnotationCommandHandlerMapping;
 import org.destinyshine.jenode.kafka.support.serialization.ProtostuffSerializer;
@@ -87,7 +88,7 @@ public class BeansConfiguration {
     @Bean(initMethod = "doStart")
     public MessageListenerContainer messageListenerContainer(ConsumerFactory consumerFactory, CommandObserver commandObserver) {
 
-        ContainerProperties containerProperties = new ContainerProperties("");
+        ContainerProperties containerProperties = new ContainerProperties(KafkaDefaults.DEFAULT_TOPIC);
         containerProperties.setMessageListener(commandObserver);
         ConcurrentMessageListenerContainer kafkaMessageListenerContainer = new ConcurrentMessageListenerContainer(consumerFactory, containerProperties);
 
